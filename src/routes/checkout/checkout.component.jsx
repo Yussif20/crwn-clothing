@@ -5,24 +5,27 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 
 const Checkout = () => {
-  const cartItems = useContext(CartContext);
+  const { cartItems, addItemToCart } = useContext(CartContext);
 
   return (
     <div>
       <h1>I am the checkout page</h1>
-      {/* 
-        <div>
-           {cartItems.map((cartItem) => {
-                const { id, name, quantity } = cartItem;
-                return (
-                         <div key={id}>
-                         <h2>{name}</h2>
-                         <span>{quantity}</span>
-                         </div>
-                        );
-                })}
-        </div>
-    */}
+
+      <div>
+        {cartItems.map((cartItem) => {
+          const { id, name, quantity } = cartItem;
+          return (
+            <div key={id}>
+              <h2>{name}</h2>
+              <span>{quantity}</span>
+              <br />
+              <span>decreament</span>
+              <br />
+              <span onClick={() => addItemToCart(cartItem)}>increament</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
